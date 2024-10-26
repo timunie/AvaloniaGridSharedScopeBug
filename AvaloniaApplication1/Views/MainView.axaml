@@ -1,0 +1,86 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AvaloniaApplication1.ViewModels"
+             xmlns:controls="clr-namespace:AvaloniaApplication1.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaApplication1.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+  <TabControl>
+    <TabItem Header="List Area">
+      <DockPanel Grid.IsSharedSizeScope="True">
+        <Grid DockPanel.Dock="Top">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="NameGroup"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="CountGroup"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="1" Text="Name"  Background="Red"/>
+          <TextBlock Grid.Column="3" Text="Count" Background="Blue"/>
+        </Grid>
+        <ScrollViewer Margin="0">
+          <ItemsControl ItemsSource="{Binding Path=Items}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate x:DataType="vm:Item">
+                 <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="NameGroup"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="CountGroup"/>
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Grid.Column="1" Text="{Binding Path=Name}" Background="Red"/>
+                  <TextBlock Grid.Column="3" Text="{Binding Path=Count}" Background="Blue" />
+                </Grid>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </ScrollViewer>
+      </DockPanel>
+    </TabItem>
+    <TabItem Header="Standard Combobox Area">
+      <ComboBox Width="200" ItemsSource="{Binding Path=Items}">
+        <ComboBox.ItemTemplate>
+          <DataTemplate x:DataType="vm:Item">
+                 <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="NameGroup"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="CountGroup"/>
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Grid.Column="1" Text="{Binding Path=Name}" Background="Red"/>
+                  <TextBlock Grid.Column="3" Text="{Binding Path=Count}" Background="Blue" />
+                </Grid>
+              </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+    </TabItem>
+    <TabItem Header="Custom Combobox Area">
+      <controls:ComboBox2 Width="200" ItemsSource="{Binding Path=Items}">
+        <controls:ComboBox2.ItemTemplate>
+          <DataTemplate x:DataType="vm:Item">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="NameGroup"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="CountGroup"/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="1" Text="{Binding Path=Name}" Background="Red"/>
+              <TextBlock Grid.Column="3" Text="{Binding Path=Count}" Background="Blue" />
+            </Grid>
+          </DataTemplate>
+        </controls:ComboBox2.ItemTemplate>
+      </controls:ComboBox2>
+    </TabItem>
+  </TabControl>
+</UserControl>
