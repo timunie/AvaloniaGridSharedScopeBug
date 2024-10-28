@@ -10,6 +10,26 @@
           <ComboBoxItem>Item 1</ComboBoxItem>
           <ComboBoxItem>Item 2</ComboBoxItem>
         </controls:ComboBox2>
+        
+        <controls:ComboBox2 PlaceholderText="Select an item" >
+          <controls:ComboBox2.ItemTemplate>
+            <DataTemplate>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" SharedSizeGroup="A"></ColumnDefinition>
+                  <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding}" Background="Aqua"></TextBlock>
+                <TextBlock Grid.Column="1"
+                           Text="{Binding}" Background="Red"></TextBlock>
+              </Grid>
+            </DataTemplate>
+          </controls:ComboBox2.ItemTemplate>
+          <sys:String>123</sys:String>
+          <sys:String>123456</sys:String>
+        </controls:ComboBox2>
+        
+        
         <controls:ComboBox2 IsEnabled="False"
                                      Width="200"
                                      SelectedIndex="1"
@@ -56,6 +76,7 @@
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Top" />
     <Setter Property="PlaceholderForeground" Value="{DynamicResource ComboBoxPlaceHolderForeground}" />
+    <Setter Property="Grid.IsSharedSizeScope" Value="True" />
     <Setter Property="Template">
       <ControlTemplate>
         <DataValidationErrors>
